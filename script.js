@@ -123,3 +123,23 @@ const skillTags = document.querySelectorAll('.skill-tag');
 skillTags.forEach((tag, index) => {
     tag.style.setProperty('--delay', index);
 });
+
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const project = document.getElementById('contact-project').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+        const toEmail = 'uxiartdessigner@gmail.com';
+
+        const subject = encodeURIComponent(`Contacto desde UXIART: ${project}`);
+        const body = encodeURIComponent(
+            `Nombre: ${name}\nCorreo: ${email}\nServicio: ${project}\n\nMensaje:\n${message}`
+        );
+
+        window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`;
+    });
+}
